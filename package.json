@@ -23,26 +23,7 @@
   },
   "license": "MIT",
   "author": "Christian Alexis Cruz Arango",
-  "main": "bundles/cc-form-engine.umd.js",
-  "module": "fesm2022/cc-form-engine.mjs",
-  "es2020": "fesm2020/cc-form-engine.mjs", 
-  "esm2020": "esm2020/cc-form-engine.mjs",
-  "fesm2020": "fesm2020/cc-form-engine.mjs",
-  "fesm2022": "fesm2022/cc-form-engine.mjs",
-  "typings": "index.d.ts",
-  "exports": {
-    "./package.json": {
-      "default": "./package.json"
-    },
-    ".": {
-      "types": "./index.d.ts",
-      "esm2020": "./esm2020/cc-form-engine.mjs",
-      "es2020": "./fesm2020/cc-form-engine.mjs",
-      "es2015": "./fesm2015/cc-form-engine.mjs",
-      "node": "./fesm2015/cc-form-engine.mjs",
-      "default": "./fesm2022/cc-form-engine.mjs"
-    }
-  },
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -50,9 +31,9 @@
     "tslib": "^2.3.0"
   },
   "peerDependencies": {
-    "@angular/common": "^19.2.0",
-    "@angular/core": "^19.2.0",
-    "@angular/forms": "^19.2.0",
+    "@angular/common": "^19.0.0",
+    "@angular/core": "^19.0.0",
+    "@angular/forms": "^19.0.0",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false
