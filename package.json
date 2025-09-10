@@ -1,0 +1,39 @@
+{
+  "name": "cc-form-engine",
+  "version": "1.0.0",
+  "description": "Advanced Angular library for reactive form generation and management with dynamic validation, change tracking, and customizable error messages",
+  "keywords": [
+    "angular",
+    "form",
+    "library",
+    "reactive-forms",
+    "validation",
+    "form-generator",
+    "typescript",
+    "signals",
+    "form-engine"
+  ],
+  "homepage": "https://github.com/ChristianCruzArango/cc-form-engine#readme",
+  "bugs": {
+    "url": "https://github.com/ChristianCruzArango/cc-form-engine/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChristianCruzArango/cc-form-engine.git"
+  },
+  "license": "MIT",
+  "author": "Christian Alexis Cruz Arango",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "@angular/common": "^19.2.0",
+    "@angular/core": "^19.2.0"
+  },
+  "sideEffects": false
+}
