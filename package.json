@@ -1,6 +1,6 @@
 {
   "name": "cc-form-engine",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "description": "Advanced Angular library for reactive form generation and management with dynamic validation, change tracking, and customizable error messages",
   "keywords": [
     "angular",
@@ -31,10 +31,10 @@
     "tslib": "^2.3.0"
   },
   "peerDependencies": {
-    "@angular/common": "^19.0.0",
-    "@angular/core": "^19.0.0",
-    "@angular/forms": "^19.0.0",
-    "rxjs": "^7.8.0"
+    "@angular/common": ">=17.0.0",
+    "@angular/core": ">=17.0.0",
+    "@angular/forms": ">=17.0.0",
+    "rxjs": ">=7.4.0"
   },
   "sideEffects": false
 }
