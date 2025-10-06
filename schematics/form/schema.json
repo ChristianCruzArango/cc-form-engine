@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "CcFormEngineFormSchematic",
+  "title": "CC Form Engine Form Generator",
+  "type": "object",
+  "description": "Generates a FormConfig for a model and integrates it into a component",
+  "properties": {
+    "model": {
+      "type": "string",
+      "description": "Name of the model/interface to generate form for (e.g., Employee, Usuario, Client)",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What is the name of the model/interface?"
+    },
+    "component": {
+      "type": "string",
+      "description": "Name of the component to integrate the form into (e.g., employee, usuario, client)",
+      "x-prompt": "What is the component name to integrate the form?"
+    },
+    "path": {
+      "type": "string",
+      "description": "Path where to search for the model and component (default: src/app)",
+      "default": "src/app"
+    },
+    "configPath": {
+      "type": "string",
+      "description": "Path where to generate the form config file",
+      "default": "src/app/forms"
+    }
+  },
+  "required": ["model", "component"]
+}

@@ -3,5 +3,9 @@
   "dest": "../../dist/cc-form-engine",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "assets": [
+    "schematics/**/*.json",
+    "schematics/**/files/**/*"
+  ]
 }

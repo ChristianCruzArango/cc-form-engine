@@ -36,6 +36,50 @@ this.userForm = this.formGenerator.generateFormGroup(USER_CONFIG);
 
 ---
 
+## Auto-Generate Forms from Your Models (New!)
+
+**Don't even write the config!** Let the schematic do it for you:
+
+```bash
+ng generate cc-form-engine:form Employee --component=employee
+```
+
+This command will:
+1. **Find your `Employee` interface** anywhere in your project (any language!)
+2. **Read all properties** and automatically detect types
+3. **Generate the complete `FormConfig<Employee>`** with validators
+4. **Integrate it into your component** with all imports
+5. **Done!** Your form is ready to use
+
+Works with models in **any language**: English, Spanish, French, Chinese, etc!
+
+```typescript
+// Your model can be in ANY language:
+interface Empleado {         // Spanish
+  nombre: string;
+  salario: number;
+  fechaIngreso: Date;
+}
+
+interface Employee {         // English
+  name: string;
+  salary: number;
+  hireDate: Date;
+}
+
+interface Employé {          // French
+  nom: string;
+  salaire: number;
+  dateEmbauche: Date;
+}
+
+// The generator reads them ALL correctly!
+```
+
+**Result:** Complete, type-safe FormConfig in seconds!
+
+---
+
 ## Why Developers Are Going Crazy Over This Library
 
 ### **ONE LINE = COMPLETE FORM**
@@ -329,6 +373,192 @@ const dynamicForm = factory.createDynamicForm([
   { name: 'active', type: 'boolean' }
 ]);
 ```
+
+---
+
+## Automatic Form Generator (Schematic)
+
+The easiest way to create forms is using our Angular Schematic that automatically generates everything for you:
+
+### Basic Usage
+
+```bash
+# Generate a form for any model
+ng generate cc-form-engine:form ModelName --component=component-name
+
+# Short alias
+ng g cc-form-engine:f ModelName --component=component-name
+```
+
+### What It Does
+
+The schematic will:
+
+1. **Search your entire project** for the model/interface (supports any folder structure)
+2. **Parse all properties** from your TypeScript interface
+3. **Detect types automatically**:
+   - `string` → `'string'`
+   - `number` → `'number'` or `'money'` (if property contains 'salary', 'price', etc.)
+   - `Date` → `'date'`
+   - `boolean` → `'boolean'`
+   - Arrays → `'array'`
+4. **Generate validators**: Required for non-optional fields
+5. **Create the FormConfig file** at `src/app/forms/model-form.config.ts`
+6. **Update your component** with necessary imports and form instance
+
+### Example
+
+**Step 1:** You have a model anywhere in your project:
+
+```typescript
+// src/app/models/product.model.ts
+export interface Product {
+  id: number;
+  name: string;
+  description?: string;
+  price: number;
+  inStock: boolean;
+  releaseDate: Date;
+}
+```
+
+**Step 2:** Run the generator:
+
+```bash
+ng g cc-form-engine:form Product --component=product-form
+```
+
+**Step 3:** Output:
+
+```
+🔍 Searching for model "Product" in project...
+✅ Found model "Product" at src/app/models/product.model.ts
+📋 Properties found: id, name, description, price, inStock, releaseDate
+✅ Found component at src/app/components/product-form.component.ts
+📝 Created src/app/forms/product-form.config.ts
+✅ Updated component
+✅ Form generation completed successfully!
+```
+
+**Generated FormConfig:**
+
+```typescript
+import { Validators } from '@angular/forms';
+import { FormConfig } from 'cc-form-engine';
+import { Product } from '../models/product.model';
+
+export const PRODUCT_FORM_CONFIG: FormConfig<Product> = {
+  id: {
+    type: 'number',
+    defaultValue: null,
+    validators: [Validators.required],
+    label: 'Id',
+    placeholder: 'Enter id'
+  },
+  name: {
+    type: 'string',
+    defaultValue: '',
+    validators: [Validators.required],
+    label: 'Name',
+    placeholder: 'Enter name'
+  },
+  description: {
+    type: 'string',
+    defaultValue: '',
+    label: 'Description',
+    placeholder: 'Enter description'
+  },
+  price: {
+    type: 'money',
+    defaultValue: null,
+    validators: [Validators.required],
+    label: 'Price',
+    placeholder: 'Enter price'
+  },
+  inStock: {
+    type: 'boolean',
+    defaultValue: false,
+    validators: [Validators.required],
+    label: 'InStock',
+    placeholder: 'Enter inStock'
+  },
+  releaseDate: {
+    type: 'date',
+    defaultValue: null,
+    validators: [Validators.required],
+    label: 'ReleaseDate',
+    placeholder: 'Enter releaseDate'
+  }
+};
+```
+
+**Updated Component:**
+
+```typescript
+import { Component, inject } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { FormGeneratorService } from 'cc-form-engine';
+import { PRODUCT_FORM_CONFIG } from '../../forms/product-form.config';
+
+@Component({
+  selector: 'app-product-form',
+  // ... your template
+})
+export class ProductFormComponent {
+  private formGenerator = inject(FormGeneratorService);
+  productForm!: FormGroup;
+
+  ngOnInit() {
+    this.productForm = this.formGenerator.generateFormGroup(PRODUCT_FORM_CONFIG);
+  }
+}
+```
+
+### Multilingual Support
+
+The schematic works with models in **any language**:
+
+```typescript
+// Spanish
+interface Cliente {
+  nombre: string;
+  apellido: string;
+  fechaNacimiento: Date;
+}
+
+// French
+interface Client {
+  nom: string;
+  prénom: string;
+  dateNaissance: Date;
+}
+
+// German
+interface Kunde {
+  vorname: string;
+  nachname: string;
+  geburtsdatum: Date;
+}
+
+// All work perfectly with: ng g cc-form-engine:form ModelName --component=...
+```
+
+### Options
+
+| Option | Description | Default |
+|--------|-------------|---------|
+| `model` | Name of the interface/model to generate form for | **(required)** |
+| `--component` | Name of the component to integrate the form | **(required)** |
+| `--path` | Base path to search for model and component | `src/app` |
+| `--configPath` | Where to generate the form config file | `src/app/forms` |
+
+### After Generation
+
+After the schematic runs, you should:
+
+1. **Review the generated FormConfig** - customize labels, placeholders, and error messages
+2. **Add custom validators** if needed (e.g., email validation, custom business rules)
+3. **Use the form** in your component template with reactive forms directives
 
 ---
 

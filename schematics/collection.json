@@ -1,0 +1,11 @@
+{
+  "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "form": {
+      "description": "Generate a FormConfig for a model and integrate it into a component",
+      "factory": "./form/index#form",
+      "schema": "./form/schema.json",
+      "aliases": ["f"]
+    }
+  }
+}
