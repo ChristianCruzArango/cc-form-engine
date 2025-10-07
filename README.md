@@ -1,5 +1,19 @@
 # CC Form Engine
 
+[![npm version](https://badge.fury.io/js/cc-form-engine.svg)](https://badge.fury.io/js/cc-form-engine)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Angular](https://img.shields.io/badge/Angular-19%2B-red)](https://angular.io/)
+
+## 🎥 Video Tutorial
+
+Watch how CC Form Engine simplifies Angular form development:
+
+[![CC Form Engine Tutorial](https://img.youtube.com/vi/m0WoQ7Feyb8/0.jpg)](https://youtu.be/m0WoQ7Feyb8)
+
+[▶️ Watch on YouTube](https://youtu.be/m0WoQ7Feyb8)
+
+---
+
 ## Stop Writing Repetitive Form Code! Create Complete Forms with Just One Line!
 
 Transform this 50+ line nightmare:
@@ -29,10 +43,6 @@ Into this **ONE LINE** of pure magic:
 this.userForm = this.formGenerator.generateFormGroup(USER_CONFIG);
 // Validation? Done! Error messages? Done! Change tracking? Done!
 ```
-
-[![npm version](https://badge.fury.io/js/cc-form-engine.svg)](https://badge.fury.io/js/cc-form-engine)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Angular](https://img.shields.io/badge/Angular-19%2B-red)](https://angular.io/)
 
 ---
 

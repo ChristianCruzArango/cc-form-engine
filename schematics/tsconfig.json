@@ -12,7 +12,7 @@
     "noUnusedParameters": false,
     "noUnusedLocals": false,
     "rootDir": ".",
-    "outDir": "../../../dist/cc-form-engine/schematics",
+    "outDir": ".",
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "sourceMap": true,
